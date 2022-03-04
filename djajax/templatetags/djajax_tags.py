@@ -32,12 +32,14 @@ def djajax_connect(parser, token):
 
 class DjajaxConnectNode(template.Node):
     
+    UPDATE_API_PLACEHOLDER = 'UPDATE_API_PLACEHOLDER'
+    
     # arguments the connect tag can take, and their defaults
     TAG_ARGUMENTS = {
          # the jQuery trigger on which the value should be updated
         'trigger_on': 'value_changed',
         # the URL the value should be POSTed to
-        'post_to': reverse('djajax:djajax-object-update-api'),
+        'post_to': UPDATE_API_PLACEHOLDER,
         # which jQuery attribute selector do we get the value from the html element?
         'value_selector': 'val',
         # if the attribute selector isn't val (for example it's "attr", what's the attr argument?
@@ -91,6 +93,8 @@ class DjajaxConnectNode(template.Node):
         extra_render = ''
         additional_context = {}
         for arg_name, arg_default in DjajaxConnectNode.TAG_ARGUMENTS.items():
+            if arg_default == DjajaxConnectNode.UPDATE_API_PLACEHOLDER:
+                arg_default = reverse('djajax:djajax-object-update-api')
             self._addArgFromParams(self.my_args, additional_context, context, arg_name, arg_default)
         
         # if we have gotten a fixed value data property, set it as data-value and configure 
