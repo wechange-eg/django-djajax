@@ -3,7 +3,7 @@ import os
 
 name = 'django-djajax'
 package = 'djajax'
-version = '0.1.0'
+version = '0.2.0'
 
 url = 'https://github.com/saschan/django-djajax'
 author = 'Sascha Narr'
