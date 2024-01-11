@@ -8,9 +8,9 @@ this one in your root URLconf to set up the default URLs::
 """
 from __future__ import unicode_literals
 
-from django.conf.urls import url
+from django.urls import path
 from djajax import views
 
 urlpatterns = [
-    url(r'^djajax/update/$', views.djajax_endpoint, name='djajax-object-update-api'),
+    path('djajax/update/', views.djajax_endpoint, name='djajax-object-update-api'),
 ]
